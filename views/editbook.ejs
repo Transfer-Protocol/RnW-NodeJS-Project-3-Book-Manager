@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Book</title>
+        <style>
+            .primary{
+                background-color: cadetblue;
+                color: white;
+            }
+            .btn {
+                padding: 5px 10px;
+                display: inline-block;
+                margin: 2px;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <section>
+                <h1 style="text-align: center;">Edit Book</h1>
+            </section>
+        </header>
+
+        <main>
+            <section style="padding: 40px;">
+                <form action="/update" method="post">
+                    <input type="text" name="id" value="<%=targetbook._id%>" style="display: none;">
+                    <div>
+                        <label for="name">Book Name:</label>
+                        <input type="text" id="name" name="bookname" placeholder="Enter book name" required value="<%=targetbook.bookname%>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" placeholder="Enter Author name" required value="<%=targetbook.author%>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" name="category" placeholder="Enter Category" required value="<%=targetbook.category%>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="price">Price (in Rs.):</label>
+                        <input type="number" id="price" name="price" placeholder="Enter your name" required value="<%=targetbook.price%>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" placeholder="Enter your name" required value="<%=targetbook.quantity%>">
+                    </div>
+                    <br>
+                    <div style="display: flex; align-items: start;">
+                        <label for="description">Description:</label>
+                        <textarea type="text" id="description" name="description" placeholder="Enter your name" required><%=targetbook.description%></textarea>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="image">Cover Image:</label>
+                        <input type="url" name="image" id="image" placeholder="Enter image url" required value="<%=targetbook.image%>">
+                    </div>
+                    <br>
+                    <button>Submit and edit book</button>
+                    <a href="/" class="btn primary">Cancel and Return to Book List</a>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

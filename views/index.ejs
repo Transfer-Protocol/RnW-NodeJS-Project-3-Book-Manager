@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book Store</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            table{
+                width: 100%;
+            }
+            table th,
+            table td{
+                border: 2px solid black;
+                padding: 2px 20px;
+            }
+
+            .btn {
+                padding: 5px 10px;
+                display: inline-block;
+                margin: 2px;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+
+            .delete{
+                background-color: crimson;
+                color: white;
+            }
+
+            .edit{
+                background-color: rgb(239, 225, 67);
+                color: black;
+            }
+
+            .primary{
+                background-color: cadetblue;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <section>
+                <p style="color: gray; text-align: center;">This page is not responsive to small devices.</p>
+            </section>
+            <section>
+                <h1 style="text-align: center;">Book List</h1>
+            </section>
+            <section>
+                <a href="/addbook" class="btn primary">Add Book</a>
+            </section>
+        </header>
+
+        <main>
+            <section>
+                <p>There are <%=datas.length%> different books.</p>
+                <p>There are total <%= datas.reduce((a, b) => {return a + b.quantity}, 0) %> books combined.</p>
+            </section>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Book Name</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (const data of datas) {%>
+                            <tr>
+                                <td><%=data._id%></td>
+                                <td><%=data.bookname%></td>
+                                <td><%=data.author%></td>
+                                <td><%=data.category%></td>
+                                <td>Rs. <%=data.price%></td>
+                                <td><%=data.quantity%></td>
+                                <td><pre style="text-wrap-mode: wrap;"><%=data.description%></pre></td>
+                                <td><img width="100px" src="<%=data.image%>" alt="image"></td>
+                                <td>
+                                    <div>
+                                        <a href="/delete/<%=data._id%>" class="btn delete">Delete</a>
+                                    </div>
+                                    <div>
+                                        <a href="/editbook/<%=data._id%>" class="btn edit">Edit</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </body>
+</html>
