@@ -27,7 +27,7 @@
 
         <main>
             <section style="padding: 40px;">
-                <form action="/addbook" method="post">
+                <form action="/addbook" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="name">Book Name:</label>
                         <input type="text" id="name" name="bookname" placeholder="Enter book name" required>
@@ -60,7 +60,7 @@
                     <br>
                     <div>
                         <label for="image">Cover Image:</label>
-                        <input type="url" name="image" id="image" placeholder="Enter image url" required>
+                        <input type="file" name="image">
                     </div>
                     <br>
                     <button>Submit and add book</button>

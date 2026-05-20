@@ -1,4 +1,21 @@
 const mongoose = require('mongoose');
+const multer = require('multer');
+const path = require('path');
+
+
+const uploadsFolder = 'uploads';
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '..', uploadsFolder));
+    },
+
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-File.' + file.originalname.split('.').pop());
+    }
+});
+
+
 
 const bookSchema = new mongoose.Schema({
     bookname: {
@@ -30,6 +47,11 @@ const bookSchema = new mongoose.Schema({
         required: true
     }
 });
+bookSchema.statics.uploader = multer({
+    storage
+}).single('image');
 
 const book = mongoose.model('BookDB', bookSchema);
+
+
 module.exports = book;
