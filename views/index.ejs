@@ -8,14 +8,6 @@
             body{
                 font-family: Arial, Helvetica, sans-serif;
             }
-            table{
-                width: 100%;
-            }
-            table th,
-            table td{
-                border: 2px solid black;
-                padding: 2px 20px;
-            }
 
             .btn {
                 padding: 5px 10px;
@@ -39,6 +31,31 @@
                 background-color: cadetblue;
                 color: white;
             }
+
+            .card{
+                border: 1px solid gray;
+                padding: 10px;
+                border-radius: 10px;
+                width: 20%;
+            }
+
+            .card-img{
+                border: 1px dotted gray;
+            }
+            .card-img img{
+                object-fit:fill;
+                width: 100%;
+                height: 350px;
+            }
+
+            .card-body{
+                margin-top: 10px;
+            }
+
+            .dark{
+                background-color: black;
+                color: white;
+            }
         </style>
     </head>
     <body>
@@ -47,10 +64,11 @@
                 <p style="color: gray; text-align: center;">This page is not responsive to small devices.</p>
             </section>
             <section>
-                <h1 style="text-align: center;">Book List</h1>
+                <h1 style="text-align: center;">Books Store</h1>
             </section>
             <section>
                 <a href="/addbook" class="btn primary">Add Book</a>
+                <a href="/viewbooks" class="btn primary">View Books</a>
             </section>
         </header>
 
@@ -60,43 +78,25 @@
                 <p>There are total <%= datas.reduce((a, b) => {return a + b.quantity}, 0) %> books combined.</p>
             </section>
             <section>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Book Name</th>
-                            <th>Author</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (const data of datas) {%>
-                            <tr>
-                                <td><%=data._id%></td>
-                                <td><%=data.bookname%></td>
-                                <td><%=data.author%></td>
-                                <td><%=data.category%></td>
-                                <td>Rs. <%=data.price%></td>
-                                <td><%=data.quantity%></td>
-                                <td><pre style="text-wrap-mode: wrap;"><%=data.description%></pre></td>
-                                <td><img width="100px" src="/uploads/<%=data.image%>" alt="image"></td>
-                                <td>
-                                    <div>
-                                        <a href="/delete/<%=data._id%>" class="btn delete">Delete</a>
-                                    </div>
-                                    <div>
-                                        <a href="/editbook/<%=data._id%>" class="btn edit">Edit</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <%}%>
-                    </tbody>
-                </table>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;">
+                    <% datas.map((v) => { %>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-img">
+                                    <img src="/uploads/<%=v.image%>" alt="">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h2 style="text-align: center; margin: 0;"><%= v.bookname %></h2>
+                                <p style="margin: 0; font-size: small;"><span style="font-weight: bold;">Authored by</span> <ins><%=v.author%></ins></p>
+                                <sub><span style="font-weight: bold;">Price: </span>Rs.<%= v.price %></sub>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn dark" style="display:block; text-align: center;" href="/bookdetail/<%=v._id%>">Learn More</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
             </section>
         </main>
     </body>

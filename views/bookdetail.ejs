@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .btn{
+            padding: 5px 10px;
+            display: inline-block;
+            margin: 2px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .primary{
+            background-color: cadetblue;
+            color: white;
+        }
+
+        .bold{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <section>
+            <p style="color: gray; text-align: center;">This page is not responsive to small devices.</p>
+        </section>
+        <section>
+            <h1 style="text-align: center;">Books Detail</h1>
+        </section>
+        <section>
+            <a href="/addbook" class="btn primary">Add Book</a>
+            <a href="/viewbooks" class="btn primary">View Books</a>
+            <a href="/" class="btn primary">Home Page</a>
+        </section>
+    </header>
+    <main>
+        <section style="display: flex; justify-content: center; gap: 30px;">
+            <div style="padding: 20px; border: 1px solid black;">
+                <img src="/uploads/<%=data.image%>" alt="<%=data.image%>">
+            </div>
+            <div>
+                <p><span class="bold">Title:</span> <%=data.bookname%></p>
+                <p><span class="bold">Author:</span> <%=data.author%></p>
+                <p><span class="bold">Category:</span> <%=data.category%></p>
+                <p><span class="bold">Price:</span> Rs.<%=data.price%></p>
+                <p><span class="bold">Available Quantity:</span> <%=data.quantity%></p>
+            </div>
+        </section>
+        <section>
+            <h2>Description:</h2>
+            <pre style="padding: 5px; border: 1px dotted black; margin-left: 40px; text-wrap-mode: wrap;"><%=data.description%></pre>
+        </section>
+    </main>
+</body>
+</html>

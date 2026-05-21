@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Add Book</title>
         <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
             .primary{
                 background-color: cadetblue;
                 color: white;
@@ -22,6 +26,11 @@
         <header>
             <section>
                 <h1 style="text-align: center;">Edit Book</h1>
+            </section>
+            <section>
+                <a href="/addbook" class="btn primary">Add Book</a>
+            <a href="/viewbooks" class="btn primary">View Books</a>
+            <a href="/" class="btn primary">Home Page</a>
             </section>
         </header>
 
@@ -64,8 +73,12 @@
                         <input type="file" name="image">
                     </div>
                     <br>
+                    <div style="border: 2px solid black; width: 10%;">
+                        <h4 style="margin-bottom: 5px; border-bottom: 1px dashed black; text-align: center; object-fit: cover;">Current Image</h4>
+                        <img width="100%" src="/uploads/<%=targetbook.image%>" alt="Original Image">
+                    </div>
+                    <br>
                     <button>Submit and edit book</button>
-                    <a href="/" class="btn primary">Cancel and Return to Book List</a>
                 </form>
             </section>
         </main>
